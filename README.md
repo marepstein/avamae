@@ -53,4 +53,4 @@
 
 Time taken: 5hours
 
-In the time allocated, I found this a challenging exercise, however, I did enjoy having to workout the best ways to replicate an existing website. It illustrated the importance of planning ahead and prioritizing. As a developer, I need to make sure I focus on functionality first, which this has definitley showed me. I will continue to work on this project as I would particularly like to further explore the issues surrounding useEffect, as its such a key feature within React.
+In the time allocated, I found this a challenging exercise, however, enjoyed having to workout the best ways to replicate an existing website. It illustrated the importance of planning ahead and prioritizing. As a developer, I need to make sure I focus on functionality first, which this has definitley showed me. I will continue to work on this project as I would particularly like to further explore the issues surrounding useEffect, as its such a key feature within React.
