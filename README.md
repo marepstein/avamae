@@ -25,9 +25,9 @@
 
 - Create-react-app startup: error involving my webpack, which I couldnt resolve following the instructions outlined in the terminal. I eventually realised this was down to my node_modules being globally installed on my laptop. It was a great learning curve as I was able to understand the effect and importance of global node_modules!
 
-- Error code (415) when trying to post form via frontend - no issues when using Insomnia. Attached content header, however this meant the form returned errors, which said that the first few form fields were empty.
+- Error code (415) when trying to post form via frontend - no issues when using Insomnia. As a potential solution, I attached the content header, which removed the 415 code, but resulted in different errors.
 
-- Home carousel: useEffect continous loop. Doesnt seem to be unmounting despite the attempted use of an empty array at the end of the hook ([]) as well as the array containing the data ([data]). - Given more time, I would attempt to try and put the 'cleanup'/unmounting (which the error referred to) in a separate useEffect. Some other solutions suggest creating a function that cancels the promise once the data has been mounted through a conditional statement. - Once the data has been loaded, I would be able to map through the array of objects returned to allocate the carousel image, title and subtitle.
+- Home carousel: useEffect continous loop. Doesnt seem to be unmounting despite the attempted use of an empty array at the end of the hook ([]) as well as the array containing the data ([data]). - Given more time, I would attempt to try and put the 'cleanup'/unmounting (which the error referred to) in a separate useEffect. Some other solutions suggest creating a function that cancels the promise once the data has been mounted through a conditional statement. Once the data has been loaded, I would be able to map through the array of objects returned to allocate the carousel image, title and subtitle.
 
       	```
       	{data.map((results, i) => {
@@ -47,9 +47,8 @@
 
 ### What I would add
 
-- Increase responsiveness of the site through the variabless I defined (for all breakpoints as opposed to just mobile)
-- Continue to organise SASS files and style the website to look more closely like the invision
-
+- Increase the responsiveness of the site via use of the variables I defined (for all breakpoints as opposed to just mobile)
+- Continue to organise SASS files and style the website to accuratley represent the invision
 ### Overall
 
 Time taken: 5hours
