@@ -27,7 +27,6 @@ const Contact = () => {
 
   const showForm = () => {
     setClicked(!clicked)
-    // need to set includeAdressDetails field to true
     updateForm({ ...form, bIncludeAddressDetails: true })
     console.log(form)
   }
