@@ -1,0 +1,85 @@
+.home-section {
+  padding-top: 10%;
+  @include media('<=phone') {
+    width: 425px;
+  }
+  .second-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 25%;
+    padding: 25px 80px;
+    @include media('<=phone') {
+      flex-direction: column-reverse;
+      padding: 0px;
+      align-items: center;
+    }
+    .info {
+      width: 50%;
+      @include media('<=phone') {
+        width: 25em;
+      }
+      .p {
+        margin-bottom: 50px;
+      }
+      li {
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+    }
+    .button {
+      // width: 25em;
+      margin-top: 70px;
+    }
+    .office-image {
+      height: 20em;
+      width: 30em;
+      border-radius: 0.5%;
+      @include media('<=phone') {
+        width: 25em;
+        height: 18em;
+      }
+    }
+  }
+  .third-col {
+    background-image: url('../../images/shutterstock_1302552622.jpg');
+    height: 25%;
+    background-size: cover;
+    padding: 80px 0px 80px 180px;
+    @include media('<=phone') {
+      padding: 0px;
+      width: 100%;
+    }
+    .info-box {
+      width: 30em;
+      height: 15em;
+      background-color: black;
+      opacity: 0.5;
+      border-radius: 0.5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      right: 0;
+      @include media('<=phone') {
+        width: 50%;
+      }
+      .info {
+        color: white;
+      }
+    }
+  }
+  .fourth-col {
+    text-align: center;
+    padding: 100px;
+    height: 25%;
+    .info-columns {
+      text-align: left;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      line-height: 25px;
+      padding: 30px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+// justify-content: center; for mobile
+
+.navigation-bar {
+  top: 0;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+  .logo {
+    height: 2em;
+    width: 14em;
+    padding: 10px;
+  }
+  .nav-links {
+    padding: 0px 20px;
+    float: right;
+    a {
+      padding: 00px 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: black;
+      font-size: 14px;
+      @include media('<=phone') {
+        display: none;
+      }
+    }
+  }
+}

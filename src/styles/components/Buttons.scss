@@ -1,0 +1,26 @@
+.blue-button {
+  color: white;
+  background-color: #2e7bb9;
+  border-radius: 5%;
+  border: none;
+  padding: 15px;
+  font-weight: 800;
+  width: 110px;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.white-button {
+  color: #2e7bb9;
+  background-color: white;
+  border-radius: 5%;
+  border: none;
+  padding: 15px;
+  font-weight: 800;
+  width: 110px;
+}

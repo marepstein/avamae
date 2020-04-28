@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### To start
 
-## Available Scripts
+1. npm i
+2. npm start
 
-In the project directory, you can run:
+## Tasks outlined:
 
-### `yarn start`
+- A home page with some static content, including images and text. The top carousel should load data (image and strapline text) from an external REST endpoint, listed below.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- An about us page, with purely static content.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- A contact-us page consisting of a single form, which on submission should post data to an external REST endpoint. The form should be validated and behave correctly when the API responds.
 
-### `yarn test`
+## Features:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- SPA using create-react-app
+- React router
+- React hooks
+- Homepage design
+- Static about page
+- SASS styling in seperated components
+- Conditional rendering on form and update state
 
-### `yarn build`
+### Issues
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Create-react-app startup: error involving my webpack, which I couldnt resolve following the instructions outlined in the terminal. I eventually realised this was down to my node_modules being globally installed on my laptop. It was a great learning curve as I was able to understand the effect and importance of global node_modules!
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Error code (415) when trying to post form via frontend - no issues when using Insomnia. Attached content header, however this meant the form returned errors, which said that the first few form fields were empty.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Home carousel: useEffect continous loop. Doesnt seem to be unmounting despite the attempted use of an empty array at the end of the hook ([]) as well as the array containing the data ([data]). - Given more time, I would attempt to try and put the 'cleanup'/unmounting (which the error referred to) in a separate useEffect. Some other solutions suggest creating a function that cancels the promise once the data has been mounted through a conditional statement. - Once the data has been loaded, I would be able to map through the array of objects returned to allocate the carousel image, title and subtitle.
 
-### `yarn eject`
+      	```
+      	{data.map((results, i) => {
+      		return <Carousel key={i} results={results]/>
+      	})}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+      	```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+      	This could allow me to pass the results as props e.g. <img src={results[0].image} />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+      	** A rough pseudocode as may differ depending on the data structure **
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Key learning points
 
-## Learn More
+- Start on the parts that are more complex, e.g. useEffect and the form submission - having done these in the past, and not having had encountered these errors, I thought these would take less time. If I were to do this challenge again, I would start on these elements!
+- Styling without a framework (such as Bulma) - I havent done this in a while, so it allowed me to really focus on the basics of css/sass.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### What I would add
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Increase responsiveness of the site through the variabless I defined (for all breakpoints as opposed to just mobile)
+- Continue to organise SASS files and style the website to look more closely like the invision
 
-### Code Splitting
+### Overall
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Time taken: 5hours
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+In the time allocated, I found this a challenging exercise, however, I did enjoy having to workout the best ways to replicate an existing website. It illustrated the importance of planning ahead and prioritizing. As a developer, I need to make sure I focus on functionality first, which this has definitley showed me. I will continue to work on this project as I would particularly like to further explore the issues surrounding useEffect, as its such a key feature within React.

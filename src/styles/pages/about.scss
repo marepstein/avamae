@@ -1,0 +1,21 @@
+.about-section {
+  margin-top: 100px;
+  padding: 0px 100px;
+
+  .info {
+    .office-img {
+      text-align: center;
+      img {
+        height: 50%;
+        width: 60%;
+      }
+    }
+  }
+  ul {
+    padding-inline-start: 12px;
+    line-height: 25px;
+  }
+  .bottom-info {
+    padding-bottom: 30px;
+  }
+}
