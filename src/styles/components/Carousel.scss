@@ -1,10 +1,8 @@
 .swiper-container {
   width: 100vw;
   height: 340px;
-  /*this gives the dimension of slider container*/
-  /*these values will make the container as big as the parent div*/
+
   overflow: hidden;
-  /*important parameter to not disrupt the container when slides increases in coverflow and other effect*/
 }
 .swiper-slide {
   width: 100%;

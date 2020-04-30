@@ -16,42 +16,45 @@
 - SPA using create-react-app
 - React router
 - React hooks
+- Swiper.js carousel from REST endpoint
+- React-hook-forms with POST functionality
 - Homepage design
 - Static about page
-- SASS styling in seperated components
-- Conditional rendering on form and update state
-
-### Issues
-
-- Create-react-app startup: error involving my webpack, which I couldnt resolve following the instructions outlined in the terminal. I eventually realised this was down to my node_modules being globally installed on my laptop. It was a great learning curve as I was able to understand the effect and importance of global node_modules!
-
-- Error code (415) when trying to post form via frontend - no issues when using Insomnia. As a potential solution, I attached the content header, which removed the 415 code, but resulted in different errors.
-
-- Home carousel: useEffect continous loop. Doesnt seem to be unmounting despite the attempted use of an empty array at the end of the hook ([]) as well as the array containing the data ([data]). - Given more time, I would attempt to try and put the 'cleanup'/unmounting (which the error referred to) in a separate useEffect. Some other solutions suggest creating a function that cancels the promise once the data has been mounted through a conditional statement. Once the data has been loaded, I would be able to map through the array of objects returned to allocate the carousel image, title and subtitle.
-
-      	```
-      	{data.map((results, i) => {
-      		return <Carousel key={i} results={results]/>
-      	})}
-
-      	```
-
-      	This could allow me to pass the results as props e.g. <img src={results[0].image} />
-
-      	** A rough pseudocode as may differ depending on the data structure **
+- SASS styling
+- Conditional rendering
 
 ### Key learning points
 
-- Start on the parts that are more complex, e.g. useEffect and the form submission - having done these in the past, and not having had encountered these errors, I thought these would take less time. If I were to do this challenge again, I would start on these elements!
+- Use of react-hook-forms: originally I created the form using basic HTML methods and updating state to handleChange and handleSubmit. However, I realised that with the required functionality (adding the option for different phone numbers, adding optional address details and resetting the form), the use of a react framework would be helpful. This was a great learning opportunity as I have never used react-hook-forms before, and although it became tricky at points, such as adding phone numbers, it was really fun to learn and great to see how it minimized the amount of code needed.
+
+🐛 I encountered:
+_ CORS error as I attempted to push new phone numbers into an array using react-hook-forms field array. At first, I thought this was the best method for adding phone numbers, however, I soon realised that the API only accepted a string for the 'PhoneNumber' object. Therefore, I created a new object everytime a new phone number was created.
+_ Controlled and uncontrolled form fields
+
+- Swiper.js: this was also new to me. I encountered a few difficulties with getting the images and information in the right places, however, after playing around with CSS I managed to get it to work.
+
+🐛 I encountered:
+_ Images taking up large amounts of space
+_ Text glitching on different slides - fixed with position: absolute
+
+- Start on the parts that are more complex as opposed to styling first.
+
 - Styling without a framework (such as Bulma) - I havent done this in a while, so it allowed me to really focus on the basics of css/sass.
 
-### What I would add
+### What I would add with more time
 
 - Increase the responsiveness of the site via use of the variables I defined (for all breakpoints as opposed to just mobile)
-- Continue to organise SASS files and style the website to accuratley represent the invision
+- Continue to organise SASS files
+- Conditional rendering of the 'success message' on the contact-us page
+
+### What I would like to develop on
+
+- My understanding of best practices in terms of styling
+- Mobile-first development
+- Continue learning about react-hook-forms
 
 ### Overall
 
-Time taken: 5hours
+I found that this test was a great learning curve for me as I was able to explore new frameworks, which ultimatley led to re-factoring code that I had initially written. Replicating an existing website is challenging and really highlighted the importance of planning ahead and prioritizing.
 
-In the time allocated, I found this a challenging exercise, however, enjoyed having to workout the best ways to replicate an existing website. It really illustrated the importance of planning ahead and prioritizing. As a developer, I need to make sure I focus on functionality first, which this task has definitley showed me. I will continue to work on this project as I would particularly like to further explore the issues surrounding useEffect, as its such a key feature within React.
+As a developer, I have learnt that I need to make sure I focus on functionality first, which this task has definitley showed me as this aspect took the most time overall.
