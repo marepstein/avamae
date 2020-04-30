@@ -1,176 +1,185 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useForm } from 'react-hook-form'
 
-const initialForm = {
-  FullName: '',
-  EmailAdress: '',
-  PhoneNumber: '',
-  CompanyName: '',
-  Message: '',
-  bIncludeAddressDetails: false,
-  AdressLine1: '',
-  AdressLine2: '',
-  CityTown: '',
-  StateCounty: '',
-  Postcode: '',
-  Country: ''
-}
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-const errorInitialState = {
-  errors: ''
-}
+toast.configure()
 
-const Contact = () => {
-  const [clicked, setClicked] = useState(false)
-  const [form, updateForm] = useState(initialForm)
-  const [error, setError] = useState(errorInitialState)
+const Contact = (props) => {
+  const [phoneNumberInputs, setPhoneNumberInputs] = React.useState([
+    'PhoneNumber'
+  ])
 
-  const showForm = () => {
-    setClicked(!clicked)
-    updateForm({ ...form, bIncludeAddressDetails: true })
-    console.log(form)
+  const { register, handleSubmit, watch, errors } = useForm()
+
+  const appendPhoneNumberInputs = () => {
+    var newInput = `PhoneNumber${phoneNumberInputs.length}`
+    setPhoneNumberInputs([...phoneNumberInputs, newInput])
   }
 
-  function handleInput(e) {
-    updateForm({ ...form, [e.target.name]: e.target.value })
-    setError({ ...error, errors: '' })
-    console.log(form)
-  }
+  const notify = () => toast('Your form has been successfully submitted!')
 
-  function handleSubmit(e) {
+  function onSubmit(data, e) {
     e.preventDefault()
-    console.log(form)
-    if (!form) return
+    console.log(data)
+    if (!data) return
     axios
       .post(
         'https://interview-assessment.api.avamae.co.uk/api/v1/contact-us/submit',
+        data,
         {
           headers: {
             'Content-Type': 'application/json'
           }
         }
       )
-      .catch((error) => console.log(error))
+      .then(notify())
+      .then(e.target.reset())
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+          toast.error('Form error!')
+        }
+      })
   }
+
+  const bIncludeAddressDetails = watch('bIncludeAddressDetails')
 
   return (
     <div className="contact-section">
-      <form onSubmit={handleSubmit}>
+      <div className="title-container">
+        <h1>Contact Us</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div className="container">
-          <label htmlFor="FullName">Full Name</label>
+          <div className="line-1">
+            <div className="fline">
+              <label>Full Name</label>
+              <input
+                id="FullName"
+                name="FullName"
+                ref={register({ required: true })}
+              />
+              {errors.FullName && <p className="help">This is required</p>}
+            </div>
+            <div className="fline">
+              <label>Email Address</label>
+              <input
+                id="EmailAddress"
+                name="EmailAddress"
+                ref={register({ required: true })}
+              />
+              {errors.EmailAddress && <p className="help">This is required</p>}
+            </div>
+          </div>
+          <div className="line-2">
+            {phoneNumberInputs.map((phoneNumberInput, i) => (
+              <div key={i}>
+                <div className="fline">
+                  <label htmlFor={phoneNumberInput}>
+                    {phoneNumberInput.replace('-', ' ')}
+                  </label>
+                </div>
+                <input
+                  ref={register()}
+                  id={phoneNumberInput}
+                  name={phoneNumberInput}
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              className="new-button"
+              onClick={appendPhoneNumberInputs}
+            >
+              Add New Phone Number
+            </button>
+          </div>
+
           <input
-            type="text"
-            id="fname"
-            name="FullName"
-            placeholder="Your name.."
-            onChange={handleInput}
-          />
-          {error.FullName && (
-            <small className="help is-danger">{error.errors}</small>
-          )}
-          <label htmlFor="EmailAdress">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="EmailAdress"
-            placeholder="Your email..."
-            onChange={handleInput}
-          />
-          {error.EmailAdress && (
-            <small className="help is-danger">{error.errors}</small>
-          )}
-          <label htmlFor="PhoneNumber">Phone Number</label>
-          <input
-            type="text"
-            id="phone-number"
-            name="PhoneNumber"
-            placeholder="Your number..."
-            onChange={handleInput}
-          />
-          {error.PhoneNumber && (
-            <small className="help is-danger">{error.errors}</small>
-          )}
-          <label htmlFor="CompanyName">Company Name</label>
-          <input
-            type="text"
             id="CompanyName"
             name="CompanyName"
-            placeholder="Your company..."
-            onChange={handleInput}
+            defaultValue="default"
+            ref={register}
+            hidden={true}
           />
-          <label htmlFor="Message">Message</label>
-          <textarea
-            id="message"
-            name="Message"
-            placeholder="Write something.."
-            onChange={handleInput}
-          ></textarea>
-          {error.Message && (
-            <small className="help is-danger">{error.errors}</small>
-          )}
-          <button type="button" name="button" onClick={showForm}></button>{' '}
-          <label>Add adress details</label>
-          {clicked === true ? (
+
+          <div className="line-3">
+            <label>Message</label>
+            <textarea
+              id="Message"
+              name="Message"
+              ref={register({ required: true, maxLength: 500 })}
+            ></textarea>
+            {errors.Message && errors.Message.type === 'required' && (
+              <p className="help">This is required</p>
+            )}
+            {errors.Message && errors.Message.type === 'maxLength' && (
+              <p className="help">Max length must not exceed 500</p>
+            )}
+          </div>
+
+          <label htmlFor="bIncludeAddressDetails" className="add-label">
+            Add Address Details
+          </label>
+          <input
+            name="bIncludeAddressDetails"
+            type="checkbox"
+            className="checkbox"
+            ref={register}
+          />
+
+          {bIncludeAddressDetails && (
             <div className="hidden">
               <br />
-              <label htmlFor="AdressLine1">Adress line 1</label>
-              <input
-                type="text"
-                id="adress"
-                name="AdressLine1"
-                onChange={handleInput}
-              />
-              {error.AdressLine1 && (
-                <small className="help is-danger">{error.errors}</small>
-              )}
-              <label htmlFor="AdressLine2">Adress line 2</label>
-              <input
-                type="text"
-                id="AdressLine2"
-                name="adress2"
-                onChange={handleInput}
-              />
-              {error.AdressLine2 && (
-                <small className="help is-danger">{error.errors}</small>
-              )}
-              <label htmlFor="CityTown">City/Town</label>
-              <input type="text" id="city" name="city" onChange={handleInput} />
-              {error.errors && (
-                <small className="help is-danger">{error.errors}</small>
-              )}
-              <label htmlFor="state">State/County</label>
-              <input
-                type="text"
-                id="city-town"
-                name="CityTown"
-                onChange={handleInput}
-              />
-              {error.CityTown && (
-                <small className="help is-danger">{error.errors}</small>
-              )}
-              <label htmlFor="Postcode">Postcode</label>
-              <input
-                type="text"
-                id="postcode"
-                name="Postcode"
-                onChange={handleInput}
-              />
-              {error.Postcode && (
-                <small className="help is-danger">{error.errors}</small>
-              )}
-              <label htmlFor="Country">Country</label>
-              <input
-                type="text"
-                id="country"
-                name="Country"
-                onChange={handleInput}
-              />
-              {error.Country && (
-                <small className="help is-danger">{error.errors}</small>
-              )}
+              <div className="line-4">
+                <div className="fline">
+                  <label>Adress line 1</label>
+                  <input
+                    id="AdressLine1"
+                    name="AdressLine1"
+                    ref={register({ required: true })}
+                  />
+                  {errors.AdressLine1 && (
+                    <p className="help">This is required</p>
+                  )}
+                </div>
+                <div className="fline">
+                  <label>Adress line 2</label>
+                  <input id="AdressLine2" name="AdressLine2" ref={register} />
+                </div>
+              </div>
+              <div className="line-5">
+                <div className="sline">
+                  <label>City/Town</label>
+                  <input id="CityTown" name="CityTown" ref={register} />
+                </div>
+                <div className="sline">
+                  <label>State/County</label>
+                  <input id="StateCounty" name="StateCounty" ref={register} />
+                </div>
+                <div className="sline">
+                  <label>Postcode</label>
+                  <input
+                    id="Postcode"
+                    name="Postcode"
+                    ref={register({ required: true })}
+                  />
+                  {errors.Postcode && <p className="help">This is required</p>}
+                </div>
+                <div className="sline">
+                  <label>Country</label>
+                  <input id="Country" name="Country" ref={register} />
+                </div>
+              </div>
             </div>
-          ) : null}
-          <input type="submit" value="Submit"></input>
+          )}
+          <input type="submit"></input>
         </div>
       </form>
     </div>

@@ -7,7 +7,9 @@ import officeImg from '../images/shutterstock_696636415.jpg'
 const Home = () => {
   return (
     <div className="home-section">
-      <div className="first-col">{/* <Carousel /> */}</div>
+      <div className="first-col">
+        <Carousel />
+      </div>
       <div className="second-col">
         <div className="info">
           <h1>Justo Penetium te vix, scripta regione urbanitas</h1>

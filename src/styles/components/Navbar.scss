@@ -10,6 +10,9 @@
     height: 2em;
     width: 14em;
     padding: 10px;
+    @include media('<=tablet', '<=phone') {
+      align-items: center;
+    }
   }
   .nav-links {
     padding: 0px 20px;
@@ -20,9 +23,17 @@
       text-transform: uppercase;
       color: black;
       font-size: 14px;
-      @include media('<=phone') {
+      @include media('<=tablet', '<=phone') {
         display: none;
       }
     }
+  }
+  button {
+    color: #2e7bb9;
+    background-color: rgb(224, 239, 243);
+    border: none;
+    padding: 10px 40px;
+    font-size: 14px;
+    border-radius: 2%;
   }
 }

@@ -1,7 +1,10 @@
 .home-section {
-  padding-top: 10%;
+  padding-top: 5%;
   @include media('<=phone') {
     width: 425px;
+  }
+  .first-col {
+    height: 25%;
   }
   .second-col {
     display: flex;
@@ -9,6 +12,10 @@
     justify-content: space-evenly;
     height: 25%;
     padding: 25px 80px;
+    @include media('<=tablet') {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
     @include media('<=phone') {
       flex-direction: column-reverse;
       padding: 0px;
@@ -16,11 +23,14 @@
     }
     .info {
       width: 50%;
-      @include media('<=phone') {
-        width: 25em;
-      }
+      // @include media('<=phone') {
+      //   width: 25em;
+      // }
       .p {
         margin-bottom: 50px;
+        @include media('<=phone') {
+          width: 25em;
+        }
       }
       li {
         margin-bottom: 10px;
@@ -35,6 +45,9 @@
       height: 20em;
       width: 30em;
       border-radius: 0.5%;
+      @include media('<=960px') {
+        width: 25em;
+      }
       @include media('<=phone') {
         width: 25em;
         height: 18em;
