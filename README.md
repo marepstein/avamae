@@ -28,15 +28,14 @@
 - Use of react-hook-forms: originally I created the form using basic HTML methods and updating state to handleChange and handleSubmit. However, I realised that with the required functionality (adding the option for different phone numbers, adding optional address details and resetting the form), the use of a react framework would be helpful. This was a great learning opportunity as I have never used react-hook-forms before, and although it became tricky at points, such as adding phone numbers, it was really fun to learn and great to see how it minimized the amount of code needed.
 
 🐛 I encountered:
-- CORS error as I attempted to push new phone numbers into an array using react-hook-forms field array. At first, I thought this was the best method for adding phone numbers, however, I soon realised that the API only accepted a string for the 'PhoneNumber' object. Therefore, I created a new object everytime a new phone number was created.
-- Controlled and uncontrolled form fields
+* CORS error as I attempted to push new phone numbers into an array using react-hook-forms field array. At first, I thought this was the best method for adding phone numbers, however, I soon realised that the API only accepted a string for the 'PhoneNumber' object. Therefore, I created a new object everytime a new phone number was created.
+* Controlled and uncontrolled form fields
 
 - Swiper.js: this was also new to me. I encountered a few difficulties with getting the images and information in the right places, however, after playing around with CSS I managed to get it to work.
 
 🐛 I encountered:
-
-_ Images taking up large amounts of space
-_ Text glitching on different slides - fixed with position: absolute
+* Images taking up large amounts of space
+* Text glitching on different slides - fixed with position: absolute
 
 - Start on the parts that are more complex as opposed to styling first.
 
